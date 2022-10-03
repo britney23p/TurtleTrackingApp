@@ -22,17 +22,27 @@ line_list = file_object.readlines()
 file_object.close()
 
 #Extract one data line into a variable
-lineString = line_list[100]
-
-# Use the split command to parse the items in lineString into a list object
-lineData = lineString.split()
-
-# Assign variables to specfic items in the list
-record_id = lineData[0]   # ARGOS tracking record ID
-obs_date = lineData[2]   # Observation date
-ob_lc = lineData[4]       # Observation Location Class
-obs_lat = lineData[6]     # Observation Latitude
-obs_lon = lineData[7]     # Observation Longitude
-
-# Print information to the use
-print (f"Record {record_id} indicates Sara was seen at {obs_lat}N and {obs_lon}W on {obs_date}")
+for lineString in line_list:
+    
+    #Check to see if the lineString is a data line
+    if lineString[0] == "#" or lineString[0] == 'u':
+        continue
+    #Can Also use
+    # if lineString[0] in ('#','u'):
+        #continue
+    #Or use
+    # if not lineString [0] in ('#','u'):
+        #and have everything else tabbed under this
+    
+    # Use the split command to parse the items in lineString into a list object
+    lineData = lineString.split()
+    
+    # Assign variables to specfic items in the list
+    record_id = lineData[0]   # ARGOS tracking record ID
+    obs_date = lineData[2]   # Observation date
+    ob_lc = lineData[4]       # Observation Location Class
+    obs_lat = lineData[6]     # Observation Latitude
+    obs_lon = lineData[7]     # Observation Longitude
+    
+    # Print information to the use
+    print (f"Record {record_id} indicates Sara was seen at {obs_lat}N and {obs_lon}W on {obs_date}")
